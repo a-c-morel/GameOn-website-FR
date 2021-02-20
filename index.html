@@ -56,26 +56,26 @@
         <div class="content">
           <span id="close"></span>
           <div class="modal-body">
-            <form name="reserve" action="index.html" method="post" onsubmit="return validate();">
+            <form name="reserve" id="modal-form" action="index.html" method="post" onsubmit="return validate();">
               <div class="formData">
                 <label for="first">Prénom</label><br>
-                <input class="text-control" type="text" id="first" name="first" minlength="2" required/><br>
+                <input class="text-control" type="text" id="first" name="first" minlength="2"/><br>
               </div>
               <div class="formData">
                 <label for="last">Nom</label><br>
-                <input class="text-control" type="text" id="last" name="last" required/><br>
+                <input class="text-control" type="text" id="last" name="last"/><br>
               </div>
               <div class="formData">
                 <label for="email">E-mail</label><br>
-                <input class="text-control" type="email" id="email" name="email" required/><br>
+                <input class="text-control" type="email" id="email" name="email"/><br>
               </div>
               <div class="formData">
                 <label for="birthdate">Date de naissance</label><br>
-                <input class="text-control" type="date" id="birthdate" name="birthdate" required/><br>
+                <input class="text-control" type="date" id="birthdate" name="birthdate"/><br>
               </div>
               <div class="formData">
                 <label for="quantity">À combien de tournois GameOn avez-vous déjà participé ?</label><br>
-                <input type="number" class="text-control" id="quantity" name="quantity" min="0" max="99" required>
+                <input type="number" class="text-control" id="quantity" name="quantity" min="0" max="99"/>
               </div>
               <p class="text-label">Quelle ville ?</p>
               <div class="formData">
@@ -104,10 +104,9 @@
                   <span class="checkbox-icon"></span>Portland
                 </label>
               </div>
-
               <div class="formData">
                 <input class="checkbox-input" type="checkbox" id="checkbox1" checked/>
-                <label class="checkbox2-label" for="checkbox1" required>
+                <label class="checkbox2-label" for="checkbox1">
                   <span class="checkbox-icon"></span>
                   J'ai lu et accepté les conditions d'utilisation.
                 </label>
@@ -119,8 +118,19 @@
                 </label>
                 <br>
               </div>
+
               <input id="submitdata" class="btn-submit button" type="submit" value="C'est parti"/>
+
             </form>
+
+            <div id="firstname-error"></div>
+            <div id="lastname-error"></div>
+            <div id="email-error"></div>
+            <div id="age-error"></div>
+            <div id="participations-error"></div>
+            <div id="city-error"></div>
+            <div id="cgu-error"></div>
+
           </div>
         </div>
       </div>
