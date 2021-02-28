@@ -210,7 +210,7 @@ function checkCity(){
 	}
 }
 
-function checkCGU(acceptCGU, acceptCGUError){
+function checkCGU(){
 	if(!acceptCGU.checked){
 		acceptCGUError.innerHTML = "Veuillez accepter les conditions générales d'utilisation";
 		acceptCGUError.style.display = "block";
@@ -245,7 +245,7 @@ function validateform(e){
 	checkAge();
 	checkParticipations();
 	checkCity();
-	/*checkCGU();*/
+	checkCGU();
 }
 	
 /*modalForm.addEventListener("submit", e =>{

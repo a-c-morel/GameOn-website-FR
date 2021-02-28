@@ -61,22 +61,27 @@
                 <label for="first">Prénom</label><br>
                 <input class="text-control" type="text" id="first" name="first" minlength="2"/><br>
               </div>
+              <div id="firstname-error">test 1</div>
               <div class="formData">
                 <label for="last">Nom</label><br>
                 <input class="text-control" type="text" id="last" name="last"/><br>
               </div>
+              <div id="lastname-error">test2</div>
               <div class="formData">
                 <label for="email">E-mail</label><br>
                 <input class="text-control" type="email" id="email" name="email"/><br>
               </div>
+              <div id="email-error">test2</div>
               <div class="formData">
                 <label for="birthdate">Date de naissance</label><br>
                 <input class="text-control" type="date" id="birthdate" name="birthdate" min="1900-01-01"/><br>
               </div>
+              <div id="age-error">test2</div>
               <div class="formData">
                 <label for="quantity">À combien de tournois GameOn avez-vous déjà participé ?</label><br>
                 <input type="number" class="text-control" id="quantity" name="quantity" min="0"/>
               </div>
+              <div id="participations-error">test2</div>
               <p class="text-label">Quelle ville ?</p>
               <div class="formData">
                 <input class="checkbox-input" type="radio" id="location1" name="location" value="New York"/>
@@ -104,12 +109,14 @@
                   <span class="checkbox-icon"></span>Portland
                 </label>
               </div>
+              <div id="city-error">test2</div>
               <div class="formData">
                 <input class="checkbox-input" type="checkbox" id="checkbox1" checked/>
                 <label class="checkbox2-label" for="checkbox1">
                   <span class="checkbox-icon"></span>
                   J'ai lu et accepté les conditions d'utilisation.
                 </label>
+                <div id="cgu-error">test2</div>
                 <br>
                 <input class="checkbox-input" type="checkbox" id="checkbox2" />
                 <label class="checkbox2-label" for="checkbox2">
@@ -122,15 +129,7 @@
               <input id="submitdata" class="btn-submit button" type="submit" value="C'est parti" onclick="validateform(event)"/>
 
             </form>
-
-            <div id="firstname-error">test 1</div>
-            <div id="lastname-error">test2</div>
-            <div id="email-error">test2</div>
-            <div id="age-error">test2</div>
-            <div id="participations-error">test2</div>
-            <div id="city-error">test2</div>
-            <div id="cgu-error">test2</div>
-
+            
           </div>
         </div>
       </div>
