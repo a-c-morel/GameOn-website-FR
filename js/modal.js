@@ -186,13 +186,21 @@ function checkParticipations(){
 	}	
 }
 
-function checkCity(city, cityError){
-	if((!city.location[0].checked)
-	&& (!city.location[1].checked)
-	&& (!city.location[2].checked)
-	&& (!city.location[3].checked)
-	&& (!city.location[4].checked)
-	&& (!city.location[5].checked)){
+let locationArray = [
+	document.getElementById('location1'),
+	document.getElementById('location2'),
+	document.getElementById('location3'),
+	document.getElementById('location4'),
+	document.getElementById('location5'),
+	document.getElementById('location6')];
+
+function checkCity(){
+	if((!locationArray[0].checked)
+	&& (!locationArray[1].checked)
+	&& (!locationArray[2].checked)
+	&& (!locationArray[3].checked)
+	&& (!locationArray[4].checked)
+	&& (!locationArray[5].checked)){
 		cityError.innerHTML = "Veuillez renseigner une ville pour participer";
 		cityError.style.display = "block";
 		return false;
@@ -236,8 +244,8 @@ function validateform(e){
 	checkEmail();
 	checkAge();
 	checkParticipations();
-	/*checkCity();
-	checkCGU();*/
+	checkCity();
+	/*checkCGU();*/
 }
 	
 /*modalForm.addEventListener("submit", e =>{
