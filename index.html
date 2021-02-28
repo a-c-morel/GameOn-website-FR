@@ -56,7 +56,7 @@
         <div class="content">
           <span id="close"></span>
           <div class="modal-body">
-            <form name="reserve" id="modal-form" action="index.html" method="post" onsubmit="return validate();">
+            <form name="reserve" id="modal-form" method="post">
               <div class="formData">
                 <label for="first">Prénom</label><br>
                 <input class="text-control" type="text" id="first" name="first" minlength="2"/><br>
@@ -71,7 +71,7 @@
               </div>
               <div class="formData">
                 <label for="birthdate">Date de naissance</label><br>
-                <input class="text-control" type="date" id="birthdate" name="birthdate"/><br>
+                <input class="text-control" type="date" id="birthdate" name="birthdate" min="1900-01-01"/><br>
               </div>
               <div class="formData">
                 <label for="quantity">À combien de tournois GameOn avez-vous déjà participé ?</label><br>
@@ -119,17 +119,17 @@
                 <br>
               </div>
 
-              <input id="submitdata" class="btn-submit button" type="submit" value="C'est parti"/>
+              <input id="submitdata" class="btn-submit button" type="submit" value="C'est parti" onclick="validateform(event)"/>
 
             </form>
 
-            <div id="firstname-error"></div>
-            <div id="lastname-error"></div>
-            <div id="email-error"></div>
-            <div id="age-error"></div>
-            <div id="participations-error"></div>
-            <div id="city-error"></div>
-            <div id="cgu-error"></div>
+            <div id="firstname-error">test 1</div>
+            <div id="lastname-error">test2</div>
+            <div id="email-error">test2</div>
+            <div id="age-error">test2</div>
+            <div id="participations-error">test2</div>
+            <div id="city-error">test2</div>
+            <div id="cgu-error">test2</div>
 
           </div>
         </div>

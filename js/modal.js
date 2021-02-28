@@ -17,6 +17,7 @@ const closeModal = document.querySelector("#close"); /*Cette constante permet de
 /*let isValid = true;*/
 
 let firstName = document.querySelector("#first");
+console.log(firstName.value);
 let lastName = document.querySelector("#last");
 let email = document.querySelector("#email");
 let age = document.querySelector("#birthdate");
@@ -102,12 +103,14 @@ function checkFirstName(){
 	if(!firstName.value){
 		firstNameError.innerHTML = "Veuillez renseigner un prénom";
 		firstNameError.style.display = "block";
-	}
-	if(firstName.minlength < 2){
+		return false;
+	} else if(firstName.value.length < 2){
 		firstNameError.innerHTML = "Le prénom doit comporter 2 caractères minimum";
 		firstNameError.style.display = "block";
+		return false;
 	} else{
 		firstNameError.style.display = "none";
+		return true;
 	}
 }
 
@@ -115,12 +118,14 @@ function checkLastName(){
 	if(!lastName.value){
 		lastNameError.innerHTML = "Veuillez renseigner un nom de famille";
 		lastNameError.style.display = "block";
-	}
-	if(lastName.minlength < 2){
+		return false;
+	} else if(lastName.value.length < 2){
 		lastNameError.innerHTML = "Le nom doit comporter 2 caractères minimum";
 		lastNameError.style.display = "block";
+		return false;
 	} else{
 		lastNameError.style.display = "none";
+		return true;
 	}
 }
 
@@ -128,81 +133,116 @@ function checkEmail(){
 	if(!email.value){
 		emailError.innerHTML = "Veuillez renseigner une adresse email";
 		emailError.style.display = "block";
-	}
-	if(email != emailRegExp){
+		return false;
+	} else if(emailRegExp.exec(email.value) == null){
 		emailError.innerHTML = "L'adresse mail n'est pas valide";
 		emailError.style.display = "block";
+		return false;
 	} else{
 		emailError.style.display = "none";
+		return true;
 	}
 }
+
+
+//COMPARER DES DATES DIRECTEMENT... JE NE SAVAIS PAS QU'ON POUVAIT.....
+
+//1. Je récupère la date de l'utilisateur
+let date1 = age.value
+	//Je crée un objet date à partir de cette value :
+	let dateOfUser = new Date(date1);
+//2. Je récupère la date actuelle
+let currentDate = new Date();
+//3. Je fixe le min sur l'année 1900 directement via le input HTML
 
 function checkAge(){
 	if(!age.value){
 		ageError.innerHTML = "Veuillez renseigner une date de naissance";
 		ageError.style.display = "block";
-	}
-	if(1 > age < 120){
+		return false;
+	} else if(dateOfUser >= currentDate){
 		ageError.innerHTML = "La date de naissance n'est pas valide";
 		ageError.style.display = "block";
+		return false;
 	} else{
 		ageError.style.display = "none";
+		return true;
 	}	
 }
 
-function checkParticipations(){
+
+function checkParticipations(participations, participationsError){
 	if(!participations.value){
 		participationsError.innerHTML = "Veuillez renseigner une date de naissance";
 		participationsError.style.display = "block";
-	}
-	if(participations > 99){
+		return false;
+	} else if(participations > 99){
 		participationsError.innerHTML = "La date de naissance n'est pas valide";
 		participationsError.style.display = "block";
+		return false;
 	} else{
 		participationsError.style.display = "none";
+		return true;
 	}	
 }
 
-function checkCity(){
+function checkCity(city, cityError){
 	if((!city.location[0].checked)
-	& (!city.location[1].checked)
-	& (!city.location[2].checked)
-	& (!city.location[3].checked)
-	& (!city.location[4].checked)
-	& (!city.location[5].checked)){
+	&& (!city.location[1].checked)
+	&& (!city.location[2].checked)
+	&& (!city.location[3].checked)
+	&& (!city.location[4].checked)
+	&& (!city.location[5].checked)){
 		cityError.innerHTML = "Veuillez renseigner une ville pour participer";
 		cityError.style.display = "block";
+		return false;
 	} else{
 		cityError.style.display = "none";
+		return true;
 	}
 }
 
-function checkCGU(){
+function checkCGU(acceptCGU, acceptCGUError){
 	if(!acceptCGU.checked){
 		acceptCGUError.innerHTML = "Veuillez accepter les conditions générales d'utilisation";
 		acceptCGUError.style.display = "block";
+		return false;
 	} else{
 		acceptCGUError.style.display = "none";
+		return true;
 	}
 }
 
-function validate (e){
-	if ((!firstName.value) || (firstName.minlength < 2)
-	|| (!lastName.value) || (lastName.minlength < 2)
-	|| (!email.value) || (email != emailRegExp)
-	|| (!age.value) || (1 > age < 120)
-	|| (!participations.value) || (participations > 99)
-	|| ((!city.location[0].checked) & (!city.location[1].checked) & (!city.location[2].checked) & (!city.location[3].checked) & (!city.location[4].checked) & (!city.location[5].checked))
-	|| (acceptCGU.checked == false)){
+/*function validate (firstName, lastName, email, age, participations, city, acceptCGU, e){
+	if (!firstName.value || firstName.minlength < 2
+	|| !lastName.value || lastName.minlength < 2
+	|| !email.value || email != emailRegExp
+	|| !age.value || 1 > age && age < 120
+	|| !participations.value || participations > 99
+	|| !city.location[0].checked && !city.location[1].checked && !city.location[2].checked && !city.location[3].checked && !city.location[4].checked && !city.location[5].checked
+	|| !acceptCGU.checked){
 		e.preventDefault;
-	}
+		return false;
+	}*/
 	/*else{
 		envoyer les données et fermer la modale (+ petit message pour dire que c'est tout bon ?)
-	} -> y a-t-il besoin de ce "else" vu que c'est le comportement par défaut ? (oui si je veux que ça affiche un message je pense mais sinon pas sûr)*/
+	} -> y a-t-il besoin de ce "else" vu que c'est le comportement par défaut ? (oui si je veux que ça affiche un message je pense mais sinon pas sûr)
+}*/
+
+function validateform(e){
+	e.preventDefault();
+	checkFirstName();
+	checkLastName();
+	checkEmail();
+	checkAge();
+	/*checkParticipations();
+	checkCity();
+	checkCGU();*/
 }
 	
-modalForm.onsubmit.addEventListener("submit", e =>{
-	validate(); /*-> Y a-t-il besoin d'écrire cette ligne vu que la fonction validate est déjà appelée dans le HTML ?*/
+/*modalForm.addEventListener("submit", e =>{
+	e.preventDefault();
+	validate();-> Y a-t-il besoin d'écrire cette ligne vu que la fonction validate est déjà appelée dans le HTML ?
 	checkFirstName();
 	checkLastName();
 	checkEmail();
@@ -210,4 +250,13 @@ modalForm.onsubmit.addEventListener("submit", e =>{
 	checkParticipations();
 	checkCity();
 	checkCGU();
-});
+});*/
+
+/*
+Ce que j'ai modifié depuis que j'ai envoyé le mail :
+- J'ai modifié les & (-> &&), j'ai enlevé des parenthèses inutiles,
+- J'ai ajouté return true / return false (... ?),
+- j'ai ajouté des arguments à mes fonctions (... ?)
+
+Questions :
+- Je n'ai pas trop compris à quoi correspond le "e" qu'on écrit dans les paramètres des fonctions*/
