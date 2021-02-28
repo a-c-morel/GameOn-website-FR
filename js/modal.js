@@ -171,13 +171,13 @@ function checkAge(){
 }
 
 
-function checkParticipations(participations, participationsError){
+function checkParticipations(){
 	if(!participations.value){
-		participationsError.innerHTML = "Veuillez renseigner une date de naissance";
+		participationsError.innerHTML = "Veuillez renseigner un nombre de participations (0 si vous n'avez jamais participé)";
 		participationsError.style.display = "block";
 		return false;
-	} else if(participations > 99){
-		participationsError.innerHTML = "La date de naissance n'est pas valide";
+	} else if(participations.value > 99){
+		participationsError.innerHTML = "Le nombre de participations est trop élevé";
 		participationsError.style.display = "block";
 		return false;
 	} else{
@@ -235,8 +235,8 @@ function validateform(e){
 	checkLastName();
 	checkEmail();
 	checkAge();
-	/*checkParticipations();
-	checkCity();
+	checkParticipations();
+	/*checkCity();
 	checkCGU();*/
 }
 	
@@ -251,12 +251,3 @@ function validateform(e){
 	checkCity();
 	checkCGU();
 });*/
-
-/*
-Ce que j'ai modifié depuis que j'ai envoyé le mail :
-- J'ai modifié les & (-> &&), j'ai enlevé des parenthèses inutiles,
-- J'ai ajouté return true / return false (... ?),
-- j'ai ajouté des arguments à mes fonctions (... ?)
-
-Questions :
-- Je n'ai pas trop compris à quoi correspond le "e" qu'on écrit dans les paramètres des fonctions*/
