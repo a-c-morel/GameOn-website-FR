@@ -539,3 +539,17 @@ footer {
   padding: .5rem 0;
   display: none;
 }
+
+#success{
+  z-index: 3;
+  color : rgb(16, 102, 5);
+  background-color: rgba(148, 175, 145, 0.815);
+  font-size: 1.3rem;
+  padding: 5rem;
+  border: 1px solid black;
+  border-radius: 15px;
+  position: absolute;
+  top : 430px;
+  left: 380px; 
+  display: none;
+}

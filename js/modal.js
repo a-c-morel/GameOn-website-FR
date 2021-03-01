@@ -14,8 +14,6 @@ const formData = document.querySelectorAll(".formData");
 const ModalForm = document.querySelector("#modal-form");
 const closeModal = document.querySelector("#close"); /*Cette constante permet de cibler l'élément du DOM ayant l'id "close" (la croix qui ferme la modale)*/
 
-/*let isValid = true;*/
-
 let firstName = document.querySelector("#first");
 console.log(firstName.value);
 let lastName = document.querySelector("#last");
@@ -47,145 +45,100 @@ function launchModal() {
 }
 
 // launch closing-modal event
-closeModal.addEventListener('click', e => {
-  modalBg.style.display = "none";
+closeModal.addEventListener('click', e => { //quand on clique sur la croix
+  modalBg.style.display = "none"; //la modale passe en display: none
 })
-/*Cette fonction modifie le style de l'élément ayant la classe ".bground"
-(le parent le plus haut de la modale, qui contient tous les éléments enfants de celle-ci)
-et passe sa propriété display en none, lorsque l'utilisateur clique sur la croix (qui a l'id "close").
-Cela fonctionne avec un listener de l'événement "click"*/
 
-// check entries validity
-/*Champ 1:
-Fonctions checkFirstName
-		 checkLastName
-		 check.... :
-.Quand l'utilisateur soumet le formulaire (=eventListener),
-- Si le champ du prénom/du nom/du mail/... est vide,
-(empêcher la fermeture de la modale et la validation des données -> je vais peut-être créer une autre fonction qui permet de stopper ce comportement, cf. plus bas)
-afficher message erreur correspondant à cette situation
-- Si le champ du prénom/du nom/du mail/... est rempli & si la valeur est incorrecte
-(empêcher la fermeture de la modale et la validation des données)
-afficher message d'erreur correspondant à cette situation
+//fonction qui vérifie le champ du prénom :
+function checkFirstName(){
+	if(!firstName.value){ //si le champ est vide
+		firstNameError.innerHTML = "Veuillez renseigner un prénom"; //la div du message d'erreur est modifiée (ajout du texte)
+		firstNameError.style.display = "block"; //la div passe de display: none à display: block
+		return false; //les données ne seront pas envoyées
+	} else if(firstName.value.length < 2){ //si le champ comporte moins de 2 caractères
+		firstNameError.innerHTML = "Le prénom doit comporter 2 caractères minimum"; //la div du message d'erreur est modifiée (ajout du texte)
+		firstNameError.style.display = "block"; //la div passe de display: none à display: block
+		return false; //les données ne seront pas envoyées
+	} else{ //sinon (si le champ est rempli et s'il comporte au moins 2 caractères)
+		firstNameError.style.display = "none"; //ne pas montrer le message d'erreur
+		return true; //le champ est valide
+	}
+}
 
-.Quand l'utilisateur soumet le formulaire (=eventListener),
-- Si un champ est correct et si un message d'erreur était affiché pour ce champ,
-supprimer le message d'erreur
+//fonction qui vérifie le champ du nom :
+function checkLastName(){
+	if(!lastName.value){ //si le champ est vide
+		lastNameError.innerHTML = "Veuillez renseigner un nom de famille"; //la div du message d'erreur est modifiée (ajout du texte)
+		lastNameError.style.display = "block"; //la div passe de display: none à display: block
+		return false; //les données ne seront pas envoyées
+	} else if(lastName.value.length < 2){ //si le champ comporte moins de 2 caractères
+		lastNameError.innerHTML = "Le nom doit comporter 2 caractères minimum"; //la div du message d'erreur est modifiée (ajout du texte)
+		lastNameError.style.display = "block"; //la div passe de display: none à display: block
+		return false; //les données ne seront pas envoyées
+	} else{ //sinon (si le champ est rempli et s'il comporte au moins 2 caractères)
+		lastNameError.style.display = "none"; //ne pas montrer le message d'erreur
+		return true; //le champ est valide
+	}
+}
 
-Conditions qui doivent empêcher fermeture de la modale (fonction 'validate' ?):
-.Quand l'utilisateur soumet le formulaire (=eventListener),
-- Si Prénom vide || Prénom incorrect || Nom vide || Nom incorrect || email vide || email incorrect || date de naissance non renseignée || date de naissance - de ... ans ou + de 120 ans || nombre de tournois vide || nombre de tournois > 99 || ville non sélectionnée || CGU décoché
-empêcher la fermeture de la modale et la validation des données
-
-Du coup, est-il possible de créer une fonction globale (du coup ce serait ça la fonction 'validate') de ce style :
-
-.Quand l'utilisateur soumet le formulaire (=eventListener),
-
-- Si Prénom vide || Prénom incorrect || Nom vide || Nom incorrect || email vide || email incorrect || date de naissance non renseignée || date de naissance - de ... ans ou + de 120 ans || nombre de tournois vide || nombre de tournois > 99 || ville non sélectionnée || CGU décoché
-empêcher la fermeture de la modale et la validation des données
-
-- Si le champ du prénom/du nom/du mail/... est vide,
-afficher message erreur correspondant à cette situation
-
-- Si le champ du prénom/du nom/du mail/... est rempli & si la valeur est incorrecte
-afficher message d'erreur correspondant à cette situation
-
-- Si un champ est rempli correctement et si un message d'erreur était affiché pour ce champ,
-supprimer le message d'erreur
-
-*/
-
-/*Traduction en JaVascript de ce qui est écrit ci-dessus :*/
-
+//variable qui permet de définir un format de mail valide avec l'utilisation de Regex:
 let emailRegExp = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
 
-function checkFirstName(){
-	if(!firstName.value){
-		firstNameError.innerHTML = "Veuillez renseigner un prénom";
-		firstNameError.style.display = "block";
-		return false;
-	} else if(firstName.value.length < 2){
-		firstNameError.innerHTML = "Le prénom doit comporter 2 caractères minimum";
-		firstNameError.style.display = "block";
-		return false;
-	} else{
-		firstNameError.style.display = "none";
-		return true;
-	}
-}
-
-function checkLastName(){
-	if(!lastName.value){
-		lastNameError.innerHTML = "Veuillez renseigner un nom de famille";
-		lastNameError.style.display = "block";
-		return false;
-	} else if(lastName.value.length < 2){
-		lastNameError.innerHTML = "Le nom doit comporter 2 caractères minimum";
-		lastNameError.style.display = "block";
-		return false;
-	} else{
-		lastNameError.style.display = "none";
-		return true;
-	}
-}
-
+//fonction qui vérifie le champ de l'email :
 function checkEmail(){
-	if(!email.value){
-		emailError.innerHTML = "Veuillez renseigner une adresse email";
-		emailError.style.display = "block";
-		return false;
-	} else if(emailRegExp.exec(email.value) == null){
-		emailError.innerHTML = "L'adresse mail n'est pas valide";
-		emailError.style.display = "block";
-		return false;
-	} else{
-		emailError.style.display = "none";
-		return true;
+	if(!email.value){ //si le champ est vide
+		emailError.innerHTML = "Veuillez renseigner une adresse email"; //la div du message d'erreur est modifiée (ajout du texte)
+		emailError.style.display = "block"; //la div passe de display:none à display: block
+		return false; //les données ne seront pas envoyées
+	} else if(emailRegExp.exec(email.value) == null){ //si ce qu'a rentré l'utilisateur ne correspond pas à une valeur attendue par la regex définie ci-dessus
+		emailError.innerHTML = "L'adresse mail n'est pas valide"; //la div du message d'erreur est modifiée (ajout du texte)
+		emailError.style.display = "block"; //la div passe de display:none à display: block
+		return false; //les données ne seront pas envoyées
+	} else{ //sinon (si le champ est rempli et si le mail rentré est au bon format)
+		emailError.style.display = "none"; //ne pas montrer le message d'erreur
+		return true; //le champ est valide
 	}
 }
 
-
-//COMPARER DES DATES DIRECTEMENT... JE NE SAVAIS PAS QU'ON POUVAIT.....
-
-//1. Je récupère la date de l'utilisateur
-let date1 = age.value
+//fonction qui vérifie le champ de la date de naissance :
+function checkAge(){
+	//Je récupère la date de l'utilisateur :
+	let date1 = age.value
 	//Je crée un objet date à partir de cette value :
 	let dateOfUser = new Date(date1);
-//2. Je récupère la date actuelle
-let currentDate = new Date();
-//3. Je fixe le min sur l'année 1900 directement via le input HTML
-
-function checkAge(){
-	if(!age.value){
-		ageError.innerHTML = "Veuillez renseigner une date de naissance";
-		ageError.style.display = "block";
-		return false;
-	} else if(dateOfUser >= currentDate){
-		ageError.innerHTML = "La date de naissance n'est pas valide";
-		ageError.style.display = "block";
-		return false;
-	} else{
-		ageError.style.display = "none";
-		return true;
+	//Je récupère la date actuelle :
+	let currentDate = new Date();
+	if(!age.value){ //si le champ est vide
+		ageError.innerHTML = "Veuillez renseigner une date de naissance"; //la div du message d'erreur est modifiée (ajout du texte)
+		ageError.style.display = "block"; //la div passe de display: none à display: block
+		return false; //les données ne seront pas envoyées
+	} else if(dateOfUser >= currentDate){ //si la date entrée par l'utilisateur est supérieure (= dans le futur) ou égale (= même date) à la date du jour
+		ageError.innerHTML = "La date de naissance n'est pas valide"; //la div du message d'erreur est modifiée (ajout du texte)
+		ageError.style.display = "block"; //la div passe de display: none à display: block
+		return false; //les données ne seront pas envoyées
+	} else{ //sinon (si le champ est rempli et que la date est antérieure à la date du jour)
+		ageError.style.display = "none"; //ne pas montrer le message d'erreur
+		return true; //le champ est valide
 	}	
 }
 
-
+//fonction qui vérifie le champ du nombre de participations :
 function checkParticipations(){
-	if(!participations.value){
-		participationsError.innerHTML = "Veuillez renseigner un nombre de participations (0 si vous n'avez jamais participé)";
-		participationsError.style.display = "block";
-		return false;
-	} else if(participations.value > 99){
-		participationsError.innerHTML = "Le nombre de participations est trop élevé";
-		participationsError.style.display = "block";
-		return false;
-	} else{
-		participationsError.style.display = "none";
-		return true;
+	if(!participations.value){ //si le champ est vide
+		participationsError.innerHTML = "Veuillez renseigner un nombre de participations (0 si vous n'avez jamais participé)"; //la div du message d'erreur est modifiée (ajout du texte)
+		participationsError.style.display = "block"; //la div passe de display: none à display: block
+		return false; //les données ne seront pas envoyées
+	} else if(participations.value > 99){ //si le nombre de participations est supérieur à 99
+		participationsError.innerHTML = "Le nombre de participations est trop élevé"; //la div du message d'erreur est modifiée (ajout du texte)
+		participationsError.style.display = "block"; //la div passe de display: none à display: block
+		return false; //les données ne seront pas envoyées
+	} else{ //sinon (si le champ est rempli et que le nombre de participations est inférieur ou égal à 99)
+		participationsError.style.display = "none"; //ne pas montrer le message d'erreur
+		return true; //le champ est valide
 	}	
 }
 
+//Je crée un array qui stocke les boutons radios
 let locationArray = [
 	document.getElementById('location1'),
 	document.getElementById('location2'),
@@ -194,68 +147,61 @@ let locationArray = [
 	document.getElementById('location5'),
 	document.getElementById('location6')];
 
+//fonction qui vérifie si un bouton radio est coché
 function checkCity(){
-	if((!locationArray[0].checked)
+	//si TOUS les boutons radios sont unchecked
+	if((!locationArray[0].checked) //je récupère pour l'élément du tableau ayant l'index 0 (location1) la propriété checked.
 	&& (!locationArray[1].checked)
 	&& (!locationArray[2].checked)
 	&& (!locationArray[3].checked)
 	&& (!locationArray[4].checked)
 	&& (!locationArray[5].checked)){
-		cityError.innerHTML = "Veuillez renseigner une ville pour participer";
-		cityError.style.display = "block";
-		return false;
-	} else{
-		cityError.style.display = "none";
-		return true;
+		cityError.innerHTML = "Veuillez renseigner une ville pour participer"; //la div du message d'erreur est modifiée (ajout du texte)
+		cityError.style.display = "block"; //la div passe de display: none à display: block
+		return false; //les données ne seront pas envoyées
+	} else{ //sinon (si un bouton radio est coché)
+		cityError.style.display = "none"; //ne pas montrer le message d'erreur
+		return true; //le champ est valide
 	}
 }
 
+//fonction qui vérifie si la checkbox d'acceptation des CGU est cochée
 function checkCGU(){
-	if(!acceptCGU.checked){
-		acceptCGUError.innerHTML = "Veuillez accepter les conditions générales d'utilisation";
-		acceptCGUError.style.display = "block";
-		return false;
-	} else{
-		acceptCGUError.style.display = "none";
-		return true;
+	if(!acceptCGU.checked){ //si la checkbox est décochée
+		acceptCGUError.innerHTML = "Veuillez accepter les conditions générales d'utilisation"; //la div du message d'erreur est modifiée (ajout du texte)
+		acceptCGUError.style.display = "block"; //la div passe de display: none à display: block
+		return false; //les données ne seront pas envoyées
+	} else{ //sinon (si la checkbox est cochée)
+		acceptCGUError.style.display = "none"; //ne pas montrer le message d'erreur
+		return true; //le champ est valide
 	}
 }
 
-/*function validate (firstName, lastName, email, age, participations, city, acceptCGU, e){
-	if (!firstName.value || firstName.minlength < 2
-	|| !lastName.value || lastName.minlength < 2
-	|| !email.value || email != emailRegExp
-	|| !age.value || 1 > age && age < 120
-	|| !participations.value || participations > 99
-	|| !city.location[0].checked && !city.location[1].checked && !city.location[2].checked && !city.location[3].checked && !city.location[4].checked && !city.location[5].checked
-	|| !acceptCGU.checked){
-		e.preventDefault;
-		return false;
-	}*/
-	/*else{
-		envoyer les données et fermer la modale (+ petit message pour dire que c'est tout bon ?)
-	} -> y a-t-il besoin de ce "else" vu que c'est le comportement par défaut ? (oui si je veux que ça affiche un message je pense mais sinon pas sûr)
-}*/
+//variable qui récupère la div de message de succès dans le HTML :
+let validationSuccess = document.querySelector("#success");
 
+//fonction qui permet de valider le formulaire et envoyer les données entrées par l'utilisateur :
 function validateform(e){
-	e.preventDefault();
-	checkFirstName();
-	checkLastName();
-	checkEmail();
-	checkAge();
-	checkParticipations();
-	checkCity();
-	checkCGU();
-}
+	let checkFirstNameResult = checkFirstName(); //j'appelle la fonction de vérification du champ prénom et je la stocke dans une variable
+	let checkLastNameResult = checkLastName(); //j'appelle la fonction de vérification du champ nom et je la stocke dans une variable
+	let checkEmailResult = checkEmail(); //j'appelle la fonction de vérification du champ email et je la stocke dans une variable
+	let checkAgeResult = checkAge(); //j'appelle la fonction de vérification du champ âge et je la stocke dans une variable
+	let checkParticipationsResult = checkParticipations(); //j'appelle la fonction de vérification du champ participations et je la stocke dans une variable
+	let checkCityResult = checkCity(); //j'appelle la fonction de vérification des boutons radios de villes et je la stocke dans une variable
+	let checkCGUResult = checkCGU(); //j'appelle la fonction de vérification de la checkbox des CGU et je la stocke dans une variable
 	
-/*modalForm.addEventListener("submit", e =>{
-	e.preventDefault();
-	validate();-> Y a-t-il besoin d'écrire cette ligne vu que la fonction validate est déjà appelée dans le HTML ?
-	checkFirstName();
-	checkLastName();
-	checkEmail();
-	checkAge();
-	checkParticipations();
-	checkCity();
-	checkCGU();
-});*/
+	if(checkFirstNameResult //si la variable retourne 'true' (correspond au "return: true" dans le "else" de la fonction checkFirstName)
+		&& checkLastNameResult //idem
+		&& checkEmailResult //idem
+		&& checkAgeResult //...
+		&& checkParticipationsResult
+		&& checkCityResult
+		&& checkCGUResult){ //si toutes les fonctions retournent "true" (tous les champs sont valides)
+		/*validationSuccess.style.display = "block";*/ //affichage du message de validation
+		alert('Votre inscription a bien été enregistrée.'); //affichage du message de validation pour signaler à l'utilisateur que tout est ok
+		return true; //valider le formulaire
+	}
+	else{
+		e.preventDefault(); //stopper le comportement par défaut de onsubmit du formulaire
+	}
+}
