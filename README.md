@@ -2,7 +2,7 @@
 
 **Objectif principal : "Créer une landing page avec JavaScript"**
 
-Ce projet est le numéro 2 de ma formation OpenClassrooms.
+Ce projet est le numéro 4 de ma formation OpenClassrooms.
 Chaque projet de cette formation est basé sur un petit scénario réaliste,
 afin que nous puissions implémenter une solution dans des conditions proches de celles que nous pourrons vivre en entreprise.
 
