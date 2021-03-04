@@ -20,7 +20,8 @@ Le **cahier des charges** était le suivant :
 
 _"Ton travail consiste à **ajouter le code JavaScript manquant pour que le formulaire soit pleinement fonctionnel**.
 Pour t’aider à démarrer, j'ai demandé à Jason d'ajouter les issues sur le repo GitHub qui décrivent ce qu'il reste à faire."_
-Les issues sont donc les suivantes (vous pouvez les consulter directement dans l'onglet "issues"):
+
+Les issues étaient (vous pouvez les consulter directement dans l'onglet "issues"):
 
 **1) TODO : fermer la modale :**
 
