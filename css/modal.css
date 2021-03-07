@@ -548,16 +548,70 @@ footer {
   display: none;
 }
 
-#success{
-  z-index: 3;
-  color : rgb(16, 102, 5);
-  background-color: rgba(148, 175, 145, 0.815);
-  font-size: 1.3rem;
-  padding: 5rem;
-  border: 1px solid black;
-  border-radius: 15px;
-  position: absolute;
-  top : 430px;
-  left: 380px; 
+#message-modal{
   display: none;
+  z-index: 1;
+  position: fixed;
+  right: 30.83%;
+  top: 0;
+  bottom: 8.44%;
+  background: #232323;
+  box-shadow: 0px 12px 12px rgba(0, 0, 0, 0.25);
+  border-radius: 8px;
+}
+
+#message-modal__content{
+  margin: 5% auto;
+  width: 100%;
+  max-width: 500px;
+  animation-name: modalopen;
+  animation-duration: var(--modal-duration);
+  background: #232323;
+  border-radius: 10px;
+  overflow: hidden;
+  position: relative;
+  color: #fff;
+  padding-top: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+#message-modal__close-message {
+  position: absolute;
+  right: 15px;
+  top: 15px;
+  width: 32px;
+  height: 32px;
+  opacity: 1;
+  cursor: pointer;
+  transform: scale(0.7);
+}
+#message-modal__close-message:before,
+#message-modal__close-message:after {
+  position: absolute;
+  left: 15px;
+  content: " ";
+  height: 33px;
+  width: 3px;
+  background-color: #fff;
+}
+#message-modal__close-message:before {
+  transform: rotate(45deg);
+}
+#message-modal__close-message:after {
+  transform: rotate(-45deg);
+}
+
+#message-modal__body{
+  padding: 4.5rem;
+  margin: 15px 100px;
+  font-family: "DM Sans";
+  font-weight: normal;
+  font-size: 36px;
+  text-align: center;
+}
+
+#close-button{
+  margin-bottom: 15px;
 }

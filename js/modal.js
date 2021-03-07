@@ -9,10 +9,13 @@ function editNav() {
 
 // DOM Elements
 const modalBg = document.querySelector(".bground");
+const modalSuccessMessage = document.querySelector("#message-modal")
 const modalBtn = document.querySelectorAll(".modal-btn");
 const formData = document.querySelectorAll(".formData");
 const ModalForm = document.querySelector("#modal-form");
 const closeModal = document.querySelector("#close"); /*Cette constante permet de cibler l'élément du DOM ayant l'id "close" (la croix qui ferme la modale)*/
+const closeSuccessMessage = document.querySelector('#message-modal__close-message'); /*Cette constante permet de cibler la croix qui ferme la modale du message de validation*/
+const closeSuccessBtn = document.querySelector('#close-button'); //Cette constante permet de cibler le bouton "fermer" de la modale de validation.
 
 let firstName = document.querySelector("#first");
 console.log(firstName.value);
@@ -181,11 +184,14 @@ function checkCGU(){
 	}
 }
 
-//variable qui récupère la div de message de succès dans le HTML :
-let validationSuccess = document.querySelector("#success");
+//fonction qui ouvre la modale de message de validation :
+function launchModalSuccess() {
+	modalSuccessMessage.style.display = "block";
+  }
 
 //fonction qui permet de valider le formulaire et envoyer les données entrées par l'utilisateur :
 function validateform(e){
+	e.preventDefault(); //stopper le comportement par défaut de onsubmit du formulaire
 	let checkFirstNameResult = checkFirstName(); //j'appelle la fonction de vérification du champ prénom et je la stocke dans une variable
 	let checkLastNameResult = checkLastName(); //j'appelle la fonction de vérification du champ nom et je la stocke dans une variable
 	let checkEmailResult = checkEmail(); //j'appelle la fonction de vérification du champ email et je la stocke dans une variable
@@ -201,11 +207,17 @@ function validateform(e){
 		&& checkParticipationsResult
 		&& checkCityResult
 		&& checkCGUResult){ //si toutes les fonctions retournent "true" (tous les champs sont valides)
-		/*validationSuccess.style.display = "block";*/ //affichage du message de validation
-		alert('Votre inscription a bien été enregistrée.'); //affichage du message de validation pour signaler à l'utilisateur que tout est ok
+		launchModalSuccess();
 		return true; //valider le formulaire
 	}
-	else{
-		e.preventDefault(); //stopper le comportement par défaut de onsubmit du formulaire
-	}
 }
+
+// closing the success modal
+closeSuccessMessage.addEventListener('click', e => { //quand on clique sur la croix
+	modalSuccessMessage.style.display = "none"; //la modale passe en display: none
+  })
+
+closeSuccessBtn.addEventListener('click', e => { //quand on clique sur le bouton "fermer"
+	modalSuccessMessage.style.display = "none"; //la modale passe en display: none
+	modalBg.style.display = "none"; //la modale passe en display: none
+})
