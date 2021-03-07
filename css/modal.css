@@ -68,7 +68,7 @@ img {
   display: none;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 1130px) {
   .topnav a {display: none;}
   .topnav a.icon {
     float: right;
@@ -436,7 +436,7 @@ input[data-error]::after {
   z-index: 1;
 }
 .hero-headline {
-  font-size: 6rem;
+  font-size: 3rem;
   font-weight: normal;
   white-space: nowrap;
 }
@@ -478,6 +478,7 @@ footer {
   padding-right: 2vw;
   margin: 0 20px;
 }
+
 @media screen and (max-width: 800px) {
   .hero-section {
     display: block;

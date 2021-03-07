@@ -83,6 +83,10 @@ function checkLastName(){
 
 //variable qui permet de définir un format de mail valide avec l'utilisation de Regex:
 let emailRegExp = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+//la première partie du mail peut contenir des lettres majuscules ou minuscules, des chiffres, ainsi que tous les caractères listés avant le "]+@"
+//après le @, on peut trouver des chiffres ou des lettres mais pas de caractères spéciaux
+//il faut qu'il y ait un point "." et que celui-ci ne soit pas le premier ni le dernier caractère + qu'il n'y ait pas 2 points qui se suivent
+//après le point, on trouve encore une chaine de caractères composés de lettres ou chiffres (nom de domaine en .com, .fr,...)
 
 //fonction qui vérifie le champ de l'email :
 function checkEmail(){
@@ -151,8 +155,8 @@ let locationArray = [
 function checkCity(){
 	//si TOUS les boutons radios sont unchecked
 	if((!locationArray[0].checked) //je récupère pour l'élément du tableau ayant l'index 0 (location1) la propriété checked.
-	&& (!locationArray[1].checked)
-	&& (!locationArray[2].checked)
+	&& (!locationArray[1].checked) //idem élément 2...
+	&& (!locationArray[2].checked) //...
 	&& (!locationArray[3].checked)
 	&& (!locationArray[4].checked)
 	&& (!locationArray[5].checked)){
