@@ -207,6 +207,7 @@ function validateform(e){
 		&& checkParticipationsResult
 		&& checkCityResult
 		&& checkCGUResult){ //si toutes les fonctions retournent "true" (tous les champs sont valides)
+		modalBg.style.display = "none"; //la modale passe en display: none
 		launchModalSuccess();
 		return true; //valider le formulaire
 	}
@@ -219,5 +220,4 @@ closeSuccessMessage.addEventListener('click', e => { //quand on clique sur la cr
 
 closeSuccessBtn.addEventListener('click', e => { //quand on clique sur le bouton "fermer"
 	modalSuccessMessage.style.display = "none"; //la modale passe en display: none
-	modalBg.style.display = "none"; //la modale passe en display: none
 })
