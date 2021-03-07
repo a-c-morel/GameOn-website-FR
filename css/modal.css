@@ -436,7 +436,7 @@ input[data-error]::after {
   z-index: 1;
 }
 .hero-headline {
-  font-size: 3rem;
+  font-size: 6rem;
   font-weight: normal;
   white-space: nowrap;
 }
@@ -517,6 +517,13 @@ footer {
     text-align: center;
   }
 }
+
+@media screen and (max-width: 1000px) {
+  .hero-headline {
+    font-size: 4.5rem;
+    white-space: normal;
+  }
+} 
 
 @keyframes modalopen {
   from {
