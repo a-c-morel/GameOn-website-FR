@@ -552,6 +552,7 @@ footer {
 
 #message-modal{
 position: absolute;
+display: none;
 z-index: 1;
 width: 536px;
 height: 850.61px;
@@ -616,7 +617,6 @@ box-shadow: 0px 12px 12px rgba(0, 0, 0, 0.25);
   background: #fe142f;
   /*display: block;*/
   border-radius: 7px;
-  font-size: 1rem;
   padding: 12px 82px;
   color: #fff;
   cursor: pointer;
@@ -642,14 +642,12 @@ box-shadow: 0px 12px 12px rgba(0, 0, 0, 0.25);
     top: 292px;
     width: 74.6%;
   }
-
   #message-modal__close-message{
     right: 20px;
     top: 20px;
     width: 19px;
     height: 19px;
   }
-  
   #message-modal__close-message:before,
   #message-modal__close-message:after {
     position: absolute;
@@ -666,7 +664,6 @@ box-shadow: 0px 12px 12px rgba(0, 0, 0, 0.25);
   #message-modal__close-message:after {
     transform: rotate(-45deg);
   }
-
   #close-button{
     padding: 12px;
     top: 593px;
