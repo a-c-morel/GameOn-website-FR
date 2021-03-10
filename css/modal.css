@@ -537,6 +537,7 @@ footer {
   }
 }
 
+/*error messages*/
 #firstname-error,
 #lastname-error,
 #email-error,
@@ -550,6 +551,7 @@ footer {
   display: none;
 }
 
+/*success message modal when validation is done*/
 #message-modal{
 position: absolute;
 display: none;
