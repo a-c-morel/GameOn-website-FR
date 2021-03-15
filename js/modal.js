@@ -113,7 +113,7 @@ function checkAge(){
 	let date1 = age.value
 	//Je crée un objet date à partir de cette value :
 	let dateOfUser = new Date(date1);
-	//Je récupère la date actuelle :
+	//Je récupère la date actuelle en appelant simplement le constructeur avec sa valeur par défaut :
 	let currentDate = new Date();
 	if(!age.value){ //si le champ est vide
 		ageError.innerHTML = "Veuillez renseigner une date de naissance"; //la div du message d'erreur est modifiée (ajout du texte)
@@ -208,7 +208,7 @@ function validateform(e){
 		&& checkCityResult
 		&& checkCGUResult){ //si toutes les fonctions retournent "true" (tous les champs sont valides)
 		modalBg.style.display = "none"; //la modale passe en display: none
-		launchModalSuccess();
+		launchModalSuccess(); //la modale de message de validation s'affiche
 		return true; //valider le formulaire
 	}
 }
