@@ -480,6 +480,13 @@ footer {
   margin: 0 20px;
 }
 
+@media screen and (max-width: 1000px) {
+  .hero-headline {
+    font-size: 4.5rem;
+    white-space: normal;
+  }
+} 
+
 @media screen and (max-width: 800px) {
   .hero-section {
     display: block;
@@ -519,14 +526,12 @@ footer {
   }
 }
   
-  
-
-@media screen and (max-width: 1000px) {
-  .hero-headline {
-    font-size: 4.5rem;
-    white-space: normal;
+@media screen and (max-width: 460px) {
+  body{position: relative;}
+  .hero-text{
+    margin-right: 100px;
   }
-} 
+}  
 
 @keyframes modalopen {
   from {
